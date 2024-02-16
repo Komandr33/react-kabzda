@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import './App.css';
-import Accordion from './components/Accordion/Accordion';
-import {UncontrolledRating} from './components/Rating/UncontrolledRating';
+import {Accordion} from './components/Accordion/Accordion';
 import {Rating, ValueType} from './components/Rating/Rating';
 import {OnOff} from './components/OnOff/OnOff';
-import {UncontrolledOnOff} from './components/OnOff/UncontrolledOnOff';
-import {UncontrolledAccordion} from './components/Accordion/UncontrolledAccordion';
+import {UncontrolledOnOff} from './components/UncontrolledOnOff/UncontrolledOnOff';
+import {UncontrolledAccordion} from './components/UncontrolledAccordion/UncontrolledAccordion';
+import {UncontrolledRating} from './components/UncontrolledRating/UncontrolledRating';
 
 
 function App() {
@@ -16,13 +16,18 @@ function App() {
 
   return (
     <div className={'App'}>
-      <Accordion title={'ckick me-2'} collapsed={accordionCollapsed} callbackCollapsed={()=>setAccordionCollapsed(!accordionCollapsed)}/>
-      <UncontrolledAccordion title={'click me'}/>
-      <UncontrolledOnOff onOff={SetVolOnOff}/>{volOnOff.toString()}
+      <Accordion
+        title={'ckick me'}
+        collapsed={accordionCollapsed}
+        callbackCollapsed={() =>
+          setAccordionCollapsed(!accordionCollapsed)
+        }
+      />
+      <UncontrolledAccordion title={'uncontrolled click me'}/>
+      <UncontrolledOnOff/>{volOnOff.toString()}
       <OnOff volOnOff={volOnOff} SetVolOnOff={SetVolOnOff}/>
       <Rating value={rating} setRating={setRating}/>
-      {/*<UncontrolledRating />*/}
-
+      <UncontrolledRating />
     </div>
   );
 }

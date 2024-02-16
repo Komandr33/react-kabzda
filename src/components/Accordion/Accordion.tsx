@@ -6,7 +6,7 @@ type  AccordionPropsType = {
   callbackCollapsed: () => void
 }
 
-function Accordion(props: AccordionPropsType) {
+export function Accordion(props: AccordionPropsType) {
   return <div>
     <AccordionTitle t={props.title} callbackCollapsed={props.callbackCollapsed}/>
     {!props.collapsed && <AccordionBody/>}
@@ -18,12 +18,12 @@ type AccordionTitlePropsType = {
   callbackCollapsed: () => void
 }
 
-function AccordionTitle(props: AccordionTitlePropsType) {
+export function AccordionTitle(props: AccordionTitlePropsType) {
 
-  return <h3 onClick={props.callbackCollapsed}>--- {props.t} ---</h3>
+  return <h3 onClick={()=>props.callbackCollapsed()}>--- {props.t} ---</h3>
 }
 
-function AccordionBody() {
+export function AccordionBody() {
 
   return (
     <>
@@ -34,5 +34,3 @@ function AccordionBody() {
       </ul>
     </>);
 }
-
-export default Accordion;
