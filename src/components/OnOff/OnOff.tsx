@@ -1,5 +1,4 @@
-import {IndicatorOnOff} from './IndicatorOnOff';
-import React, {useState} from 'react';
+import React from 'react';
 
 type OnOffPropsType = {
   volOnOff: boolean
@@ -37,11 +36,21 @@ export function OnOff(props: OnOffPropsType) {
     background: props.volOnOff ? 'green' : 'red'
   }
 
+  type IndicatorOnOffType = {
+    indicator: boolean
+  }
+
+  function IndicatorOnOff(props: IndicatorOnOffType) {
+    return (
+      <span className={props.indicator ? 'indicatorOn' : 'indicatorOff'}></span>
+    );
+  }
+
   return (
     <div>
       <div style={onStyle} onClick={() => props.SetVolOnOff(true)}>On</div>
       <div style={offStyle} onClick={() => props.SetVolOnOff(false)}>Off</div>
-      <div style={indicator}><IndicatorOnOff onOff={props.volOnOff}/></div>
+      <div style={indicator}><IndicatorOnOff indicator={props.volOnOff}/></div>
     </div>
   );
 }
