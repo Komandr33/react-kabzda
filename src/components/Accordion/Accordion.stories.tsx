@@ -22,7 +22,7 @@ const onClickHandler = action('onClick')
 export const AccordionCollapsed = () => {
   return (
     <Accordion
-      title={'collapsed'}
+      title={'Menu'}
       collapsed={true}
       callbackCollapsed={onClickHandler}/>
   )

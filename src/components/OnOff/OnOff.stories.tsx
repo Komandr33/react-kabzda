@@ -7,24 +7,14 @@ export default {
   component: OnOff,
 };
 
-const onClickHandler = action('onClick')
+const onClickHandler = action('on or off clicked')
 
-export const OnMode = () => {
-  return (
-    <OnOff volOnOff={true} SetVolOnOff={onClickHandler}/>
-  )
-}
+export const OnMode = () => <OnOff volOnOff={true} SetVolOnOff={onClickHandler}/>
 
-export const OffMode = () => {
-  return (
-    <OnOff volOnOff={false} SetVolOnOff={onClickHandler}/>
-  )
-}
+export const OffMode = () => <OnOff volOnOff={false} SetVolOnOff={onClickHandler}/>
 
 export const OnOffDemo = () => {
-
   const [value, setValue] = useState(true)
-
   return (
     <OnOff volOnOff={value} SetVolOnOff={setValue}/>
   )
