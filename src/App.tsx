@@ -24,10 +24,10 @@ function App() {
         }
       />
       <UncontrolledAccordion title={'uncontrolled click me'}/>
-      <UncontrolledOnOff/>{volOnOff.toString()}
+      <UncontrolledOnOff onChange={SetVolOnOff}/>{volOnOff.toString()}
       <OnOff volOnOff={volOnOff} SetVolOnOff={SetVolOnOff}/>
       <Rating value={rating} setRating={setRating}/>
-      <UncontrolledRating />
+      {/*<UncontrolledRating />*/}
     </div>
   );
 }

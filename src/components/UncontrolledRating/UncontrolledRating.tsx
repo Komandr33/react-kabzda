@@ -1,23 +1,30 @@
 import React, {useState} from 'react';
 
-type RatingType = 0 | 1 | 2 | 3 | 4 | 5
+type RatingValueType = 0 | 1 | 2 | 3 | 4 | 5
+
+type PropsType = {
+  defaultValue?: RatingValueType,
+  onChange: (value: RatingValueType) => void
+}
 
 type StarPropsType = {
   selected: boolean
-  setValue:() => void
+  setValue: () => void
 }
-export function UncontrolledRating() {
 
-  const [value, setValue] = useState<RatingType>(0)
+export function UncontrolledRating(props: PropsType) {
+
+  const [value, setValue] = useState<RatingValueType>(props.defaultValue ? props.defaultValue : 0)
 
   return (
     <div>
-      <button onClick={()=> setValue(0)}>reset rating</button><br/>
-      <Star selected={value > 0} setValue={() => setValue(1)}/>
-      <Star selected={value > 1} setValue={() => setValue(2)}/>
-      <Star selected={value > 2} setValue={() => setValue(3)}/>
-      <Star selected={value > 3} setValue={() => setValue(4)}/>
-      <Star selected={value > 4} setValue={() => setValue(5)}/>
+      <button onClick={() => {setValue(0); props.onChange(0)}}>reset rating</button>
+      <br/>
+      <Star selected={value > 0} setValue={() => {setValue(1); props.onChange(1)}}/>
+      <Star selected={value > 1} setValue={() => {setValue(2); props.onChange(2)}}/>
+      <Star selected={value > 2} setValue={() => {setValue(3); props.onChange(3)}}/>
+      <Star selected={value > 3} setValue={() => {setValue(4); props.onChange(4)}}/>
+      <Star selected={value > 4} setValue={() => {setValue(5); props.onChange(5)}}/>
     </div>
   );
 
