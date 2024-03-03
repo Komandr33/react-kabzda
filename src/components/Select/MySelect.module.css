@@ -1,0 +1,31 @@
+.select {
+
+}
+
+.select .main {
+    border: 1px solid black;
+    display: inline-block;
+    min-height: 20px;
+    min-width: 50px;
+    /*writing-mode: horizontal-tb;*/
+
+}
+
+.items {
+    position: absolute;
+    border: 1px solid black;
+    /*min-height: 20px;*/
+    /*min-width: 50px;*/
+    padding: 5px;
+}
+
+.item {
+    /*margin: 2px;*/
+    /*padding: 0;*/
+}
+
+.selected {
+    background-color: #029cfd;
+    color: white;
+}
+

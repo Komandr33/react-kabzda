@@ -1,4 +1,5 @@
-import {FC, useState} from 'react';
+import {FC, KeyboardEvent, useState} from 'react';
+import s from './MySelect.module.css'
 
 export type ItemType = {
   title: string,
@@ -7,47 +8,59 @@ export type ItemType = {
 
 type SelectPropsType = {
   value: any,
-  onChange: (val: number,) => void,
   items: ItemType[]
+  onChange: (val: any) => void
 }
 
 export const MySelect: FC<SelectPropsType> = ({value, onChange, items}) => {
 
-  const [collapsed, setCollapsed] = useState<boolean>(false)
+  const [collapsed, setCollapsed] = useState(false)
+  const [hoveredValue, setHoveredValue] = useState(value)
 
-  const onclickHandler = () => {
-    setCollapsed(!collapsed)
+  const item = items.find(el => el.value === value)
+  const hoveredElement = items.find(el => el.value === hoveredValue)
+
+  const OnSpanClickHandler = () => setCollapsed(!collapsed)
+
+  const OnItemClickHandler = (val: number) => {
+    onChange(val)
+    OnSpanClickHandler();
   }
 
-  return <div>
+  const onKeyUpHandler = (e: KeyboardEvent<HTMLDivElement>) => {
+    for (let i = 0; i < items.length; i++) {
+      if (items[i].value === hoveredValue) {
+        if (items[i + 1]) {
+          onChange(items[i + 1].value)
+          break;
+        }
+      }
+    }
+  }
+
+  return <>
     <div
-      onClick={onclickHandler} /*tabIndex={0} onBlur={() => setCollapsed(false)}*/ style={{ width: '100px', borderBlockEnd: '1px solid',writingMode: 'horizontal-tb'}} >{value}</div>
-    <ul style={{listStyleType: 'none'}}>
-      {collapsed && items.map((item, i) =>
-        <Option
-          key={i}
-          item={item.title}
-          onChange={onChange}
-          value={item.value}
-          collapsed={setCollapsed}
-        />)}
-    </ul>
-  </div>
-}
-
-type OptionPropsType = {
-  item: string,
-  onChange: (val: number,) => void,
-  value: number,
-  collapsed: (collapsed: boolean) => void
-}
-const Option = (props: OptionPropsType) => {
-
-  const OptionClickHandler = () => {
-    props.onChange(props.value);
-    props.collapsed(false)
-  }
-  return <li onClick={OptionClickHandler}>
-    {props.item}
-  </li>
+      className={s.select}
+      tabIndex={0}
+      // onBlur={() => setCollapsed(false)}
+      onKeyUp={onKeyUpHandler}
+    >
+      <span className={s.main} onClick={OnSpanClickHandler}>
+        {item && item.title}
+      </span>
+      {
+        collapsed &&
+          <div className={s.items}>
+            {items.map(i => <div
+              className={s.item + ' ' + (hoveredElement === i ? s.selected : '')}
+              key={i.value}
+              onMouseEnter={() => setHoveredValue(i.value)}
+              onClick={() => OnItemClickHandler(i.value)
+              }>
+              {i.title}
+            </div>)}
+          </div>
+      }
+    </div>
+  </>
 }
