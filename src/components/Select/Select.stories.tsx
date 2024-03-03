@@ -1,31 +1,37 @@
 import * as React from 'react';
 import {useState} from 'react';
-import {ItemType, MySelect} from './MySelect';
+import {MySelect} from './MySelect';
 
 export default {
-  title: 'select'
+  title: 'Select'
 }
 
 // export type ValueType = 'none'| 'Krasnodar' | 'Moscow' | 'New-York' | 'Alicante'
 
-export const Select = () => {
-
-    const [item, setItem] = useState<ItemType>({title: '', value: 0})
-
-  const onChangeHandler = (val: number) => {
-      // debugger
-    let newItem = items.find(el => el.value === val )
-    if (newItem) {
-      setItem({...newItem})
-    }
-    console.log(val)
-  }
+export const WithItem = () => {
   const items = [
-    {title: '', value: 0},
+    {title: 'Vladimir', value: 0},
     {title: 'Krasnodar', value: 1},
     {title: 'Moscow', value: 2},
     {title: 'New-York', value: 3},
     {title: 'Alicante', value: 4},
   ]
-  return <MySelect value={item.title} onChange={onChangeHandler} items={items}/>
+  const [value, setValue] = useState(0)
+
+
+  return <MySelect value={value} items={items} onChange={(val) => setValue(val)}/>
+}
+
+export const WithoutItem = () => {
+  const items = [
+    {title: 'Vladimir', value: 0},
+    {title: 'Krasnodar', value: 1},
+    {title: 'Moscow', value: 2},
+    // {title: 'New-York', value: 3},
+    // {title: 'Alicante', value: 4},
+  ]
+  const [value, setValue] = useState(1)
+
+
+  return <MySelect value={value} items={items} onChange={(val) => setValue(val)}/>
 }
