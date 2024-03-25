@@ -6,8 +6,6 @@ export default {
   title: 'Select'
 }
 
-// export type ValueType = 'none'| 'Krasnodar' | 'Moscow' | 'New-York' | 'Alicante'
-
 export const WithItem = () => {
   const items = [
     {title: 'Vladimir', value: 0},
@@ -27,10 +25,10 @@ export const WithoutItem = () => {
     {title: 'Vladimir', value: 0},
     {title: 'Krasnodar', value: 1},
     {title: 'Moscow', value: 2},
-    // {title: 'New-York', value: 3},
-    // {title: 'Alicante', value: 4},
+    {title: 'New-York', value: 3},
+    {title: 'Alicante', value: 4},
   ]
-  const [value, setValue] = useState(1)
+  const [value, setValue] = useState<number | null>(null)
 
 
   return <MySelect value={value} items={items} onChange={(val) => setValue(val)}/>
