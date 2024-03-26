@@ -1,10 +1,19 @@
-import React from 'react';
+import React, {memo} from 'react';
 
 type OnOffPropsType = {
   volOnOff: boolean
   SetVolOnOff: (volOnOff: boolean) => void
 }
+type IndicatorOnOffType = {
+  indicator: boolean
+}
 
+export const IndicatorOnOff = (props: IndicatorOnOffType) => {
+  return (
+    <span className={props.indicator ? 'indicatorOn' : 'indicatorOff'}></span>
+  );
+}
+const OnOffMemo = memo(IndicatorOnOff)
 export function OnOff(props: OnOffPropsType) {
 
   const onStyle = {
@@ -36,21 +45,11 @@ export function OnOff(props: OnOffPropsType) {
     background: props.volOnOff ? 'green' : 'red'
   }
 
-  type IndicatorOnOffType = {
-    indicator: boolean
-  }
-
-  function IndicatorOnOff(props: IndicatorOnOffType) {
-    return (
-      <span className={props.indicator ? 'indicatorOn' : 'indicatorOff'}></span>
-    );
-  }
-
   return (
     <div>
       <div style={onStyle} onClick={() => props.SetVolOnOff(true)}>On</div>
       <div style={offStyle} onClick={() => props.SetVolOnOff(false)}>Off</div>
-      <div style={indicator}><IndicatorOnOff indicator={props.volOnOff}/></div>
+      <div style={indicator}><OnOffMemo indicator={props.volOnOff}/></div>
     </div>
   );
 }

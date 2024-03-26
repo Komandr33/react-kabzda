@@ -1,20 +1,22 @@
-import * as React from 'react';
+import React, {memo} from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, {SelectChangeEvent} from '@mui/material/Select';
+import {useState} from 'react';
 
-export function SelectVariants() {
-  const [age, setAge] = React.useState('');
+export const SelectVariants = () => {
+  const [age, setAge] = useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
     setAge(event.target.value);
   };
+  const InputLabelMemo = memo(InputLabel)
 
   return (
     <div>
       <FormControl variant="standard" sx={{m: 1, minWidth: 120}}>
-        <InputLabel id="demo-simple-select-standard-label">Age</InputLabel>
+        <InputLabelMemo id="demo-simple-select-standard-label">Age</InputLabelMemo>
         <Select
           labelId="demo-simple-select-standard-label"
           id="demo-simple-select-standard"
@@ -25,11 +27,14 @@ export function SelectVariants() {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value={1}>Ten</MenuItem>
+          <MenuItem value={2}>Twenty</MenuItem>
+          <MenuItem value={3}>Thirty</MenuItem>
         </Select>
       </FormControl>
     </div>
   );
 }
+
+export const SelectVariantsMemo = memo(SelectVariants)
+

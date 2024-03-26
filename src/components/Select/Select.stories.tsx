@@ -1,6 +1,6 @@
-import * as React from 'react';
-import {useState} from 'react';
-import {MySelect} from './MySelect';
+import React, {useState} from 'react';
+import {MySelectMemo} from './MySelect';
+import {SelectVariantsMemo} from './Select';
 
 export default {
   title: 'Select'
@@ -17,7 +17,7 @@ export const WithItem = () => {
   const [value, setValue] = useState(0)
 
 
-  return <MySelect value={value} items={items} onChange={(val) => setValue(val)}/>
+  return <MySelectMemo value={value} items={items} onChange={(val) => setValue(val)}/>
 }
 
 export const WithoutItem = () => {
@@ -31,5 +31,9 @@ export const WithoutItem = () => {
   const [value, setValue] = useState<number | null>(null)
 
 
-  return <MySelect value={value} items={items} onChange={(val) => setValue(val)}/>
+  return <MySelectMemo value={value} items={items} onChange={(val) => setValue(val)}/>
+}
+
+export const Select  = () => {
+  return <SelectVariantsMemo/>
 }

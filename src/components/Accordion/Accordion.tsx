@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 
 type  AccordionPropsType = {
   title: string
@@ -6,25 +6,19 @@ type  AccordionPropsType = {
   callbackCollapsed: () => void
 }
 
-export function Accordion(props: AccordionPropsType) {
+export const Accordion = (props: AccordionPropsType) => {
+
   return <div>
-    <AccordionTitle t={props.title} callbackCollapsed={props.callbackCollapsed}/>
+    <AccordionTitleMemo title={props.title} callbackCollapsed={props.callbackCollapsed}/>
     {!props.collapsed && <AccordionBody/>}
   </div>
 }
 
 type AccordionTitlePropsType = {
-  t: string
+  title: string
   callbackCollapsed: () => void
 }
-
-export function AccordionTitle(props: AccordionTitlePropsType) {
-
-  return <h3 onClick={()=>props.callbackCollapsed()}>--- {props.t} ---</h3>
-}
-
-export function AccordionBody() {
-
+const AccordionBody = () => {
   return (
     <>
       <ul>
@@ -34,3 +28,7 @@ export function AccordionBody() {
       </ul>
     </>);
 }
+const AccordionTitle = (props: AccordionTitlePropsType) => {
+  return <h3 onClick={() => props.callbackCollapsed()}>--- {props.title} ---</h3>
+}
+const AccordionTitleMemo = memo(AccordionTitle);

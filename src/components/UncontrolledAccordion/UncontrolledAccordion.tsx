@@ -1,24 +1,22 @@
-import React, {useState} from 'react';
+import React, {memo, useState} from 'react';
 
 type  AccordionPropsType = { title: string }
 
-export function UncontrolledAccordion(props: AccordionPropsType) {
+export const UncontrolledAccordion = (props: AccordionPropsType) => {
 
   const [collapsed, setCollapsed] = useState(true)
 
   return <div onClick={() => setCollapsed(!collapsed)}>
-    <AccordionTitle t={props.title}/>
+    <AccordionTitleMemo title={props.title}/>
     {!collapsed && <AccordionBody/>}
   </div>
 }
 
-type AccordionTitlePropsType = { t: string }
-
-function AccordionTitle(props: AccordionTitlePropsType) {
-  return <h3>--- {props.t} ---</h3>
+type AccordionTitlePropsType = { title: string }
+const AccordionTitle = (props: AccordionTitlePropsType) => {
+  return <h3>--- {props.title} ---</h3>
 }
-
-function AccordionBody() {
+const AccordionBody = () => {
   return (
     <>
       <ul>
@@ -28,4 +26,4 @@ function AccordionBody() {
       </ul>
     </>);
 }
-
+const AccordionTitleMemo = memo(AccordionTitle);

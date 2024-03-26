@@ -1,0 +1,32 @@
+.onStyle {
+    width: 30px;
+    height: 20px;
+    margin: 2px;
+    padding: 2px;
+    border: 1px solid black;
+    display: inline-block;
+}
+
+.offStyle {
+    width: 30px;
+    height: 20px;
+    margin: 2px;
+    padding: 2px;
+    border: 1px solid black;
+    display: inline-block;
+}
+
+.indicator {
+    width: 10px;
+    height: 10px;
+    margin: 2px;
+    border: 1px solid black;
+    border-radius: 5px;
+    display: inline-block;
+}
+.green {
+    background: forestgreen;
+}
+.red {
+    background: #f63f3f;
+}

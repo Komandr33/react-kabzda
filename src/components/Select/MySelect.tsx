@@ -1,18 +1,17 @@
-import {FC, KeyboardEvent, useEffect, useState} from 'react';
+import {FC, KeyboardEvent, memo, useEffect, useState} from 'react';
 import s from './MySelect.module.css'
 
 export type ItemType = {
   title: string,
   value: any
 }
-
 type SelectPropsType = {
   value?: number | null,
   items: ItemType[]
   onChange: (val: number) => void
 }
 
-export const MySelect: FC<SelectPropsType> = ({value, onChange, items}) => {
+const MySelect: FC<SelectPropsType> = ({value, onChange, items}) => {
 
   const [collapsed, setCollapsed] = useState(false)
   const [hoveredValue, setHoveredValue] = useState(value) // хранит value элемента над которым мышь
@@ -51,7 +50,7 @@ export const MySelect: FC<SelectPropsType> = ({value, onChange, items}) => {
     }
   }
 
-  return <>
+  return (
     <div
       className={s.select}
       tabIndex={0}
@@ -74,6 +73,7 @@ export const MySelect: FC<SelectPropsType> = ({value, onChange, items}) => {
             </div>)}
           </div>
       }
-    </div>
-  </>
+    </div>)
 }
+
+export const MySelectMemo = memo(MySelect)
