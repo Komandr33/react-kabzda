@@ -1,4 +1,4 @@
-type StateType = {
+export type StateType = {
   collapsed: boolean
 }
 type ActionType = ReturnType<typeof ToggleCollapsedAC>
