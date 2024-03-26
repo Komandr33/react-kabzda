@@ -18,6 +18,10 @@ type AccordionTitlePropsType = {
   title: string
   callbackCollapsed: () => void
 }
+const AccordionTitle = (props: AccordionTitlePropsType) => {
+  return <h3 onClick={() => props.callbackCollapsed()}>--- {props.title} ---</h3>
+}
+const AccordionTitleMemo = memo(AccordionTitle);
 const AccordionBody = () => {
   return (
     <>
@@ -28,7 +32,3 @@ const AccordionBody = () => {
       </ul>
     </>);
 }
-const AccordionTitle = (props: AccordionTitlePropsType) => {
-  return <h3 onClick={() => props.callbackCollapsed()}>--- {props.title} ---</h3>
-}
-const AccordionTitleMemo = memo(AccordionTitle);
